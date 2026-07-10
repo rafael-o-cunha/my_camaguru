@@ -129,6 +129,7 @@ foi possível usar:
     </dependency>
     [...]
     ```
+- realizado também a criação de um factory para que juntamente com Hikari seja viável manter conexões e apenas alocar do pool uma conexão quando for realizar operações, com isso a aplicação se conecta ao realizar a primeira operçaão.
 - coloquei log no container do banco com commands(pode-se ver no docker-composer) e com comando de logs é possível ver o postgres mostrando a query executada.
 
 - [ ] realizar primeira conexão e consulta ao banco de dados para testar
