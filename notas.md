@@ -146,16 +146,56 @@ foi possível usar:
 
 ## Modelagem de dados
 
-- [ ] Modelagem conceitual (DER)
-- [ ] Modelo Lógico Simples
+- [X] Modelagem conceitual (DER)
+
+### V-Zero que dá início ao modelo:
+
+![1784123541881](image/notas/1784123541881.png)
+
+- na modelagem, V0 considerei os principais domínios e simplificações
+- falta incluir sticker
+- falta avaliar as reações pois pode ser associado de maneira mais coerente.
+- A princípio imagens de avatar e capa ficarão no perfil identificadas.
+
+### V1 melhoria do modelo, representando catálogos
+
+![1784124578372](image/notas/1784124578372.png)
+
+- nesta versão inclui a representação de catálogos de reações e de stickers
+- como stickers não existem sozinhos, eles apenas são carregados para serem aplicados a uma imagem, deixei representado sem relações, em alguns caos os stickers podem ser acessados diretos por bucket no storage e não passam pelo modelo, decidi fazer desta forma pois irei tratar o bucket manualmente no servidor de aplicação assim como habilitar e desabilitar o uso de stickers.
+- tipo_reação também é um catálogo, e ele é acionado quando uma reação ocorre em um post por um usuário, assim a tabela reação apenas associa as 3 entidades.
+- sticker não tem relação com ninguém nessa versão pois ele é materializado dentro de uma imagem editada, ele existe apenas como catálogo sob esta ótica.
+
+
+
+
+
+### V2 trata relação de sticker e reação para amadurecer modelo de forma escalável, analítica e configurável.
+
+
+
+![1784125577288](image/notas/1784125577288.png)
+
+- neste caso decidi trabalhar mais nas relações de reação e sticker de forma a evitar possível n:n mais pra frente e também para atender uma ideia que tive que é responder perguntas mais analíticas sobre reações e stickers e seus usos assim como configurá-los de forma extensível sem atingir o modelo futuramente.,
+- mudei o nome para ficar mais claro o que é domínio e evento
+
+
+### V3 refinando, adicionando autorelacionamento no comentário.
+
+![1784145051775](image/notas/1784145051775.png)
+
+
+- adicionado auto-relacionamento em comentário para que seja possível desenvolver a funcionalidade de comentários que respondem outros comentários, algo que poderia ser feito posteriormente, porém apliquei a prática de auto-relacionamento logo no início do projeto. [6]
+- também declarei no modelo as cardinalidades que estão presentes atualmente no modelo.
+- cada entidade possui identidade própria e motivo para existir de forma independente.
+- a partir deste ponto pode ser possível a criação do modelo lógico e revisão de regras, requisitos e posteriormente criação do dicionário de dados.
+
+
+
+- [ ] Modelo Lógico
 - [ ] Dicionário de dados.
 - [ ] Materializar modelo em Banco de dados Postgres(schema criado)
 - [ ] Criar massa inicial para validar modelo e iniciar desenvolvimento (seed))
-
-
-
----
-
 
 ## Comandos usados
 
@@ -193,3 +233,11 @@ foi possível usar:
 [5.4] https://stackoverflow.com/questions/21034462/how-to-use-a-factory-pattern-to-get-the-instance-of-my-database-client
 [5.5] https://refactoring.guru/design-patterns/factory-method
 [5.6] https://medium.com/@ucgorai/understanding-and-using-the-factory-design-pattern-in-java-06dcb8458983
+
+[6] [www.alura.com.br/artigos/relacionamento-reflexivo-modelagem-banco-de-dados?srsltid=AfmBOorIO-5ma0glXvj_hbs5ORXdaUVOY_Tu8j6lRGnMZ4nJNvR9D9h-](https://www.alura.com.br/artigos/relacionamento-reflexivo-modelagem-banco-de-dados?srsltid=AfmBOorIO-5ma0glXvj_hbs5ORXdaUVOY_Tu8j6lRGnMZ4nJNvR9D9h-)  
+
+[6.1] [www.inf.ufes.br/~jssalamon/wp-content/uploads/disciplinas/engsoft/slides/Slide%206%20-%20Modelagem%20de%20Entidades%20e%20Relacionamentos.pdf](<https://www.inf.ufes.br/~jssalamon/wp-content/uploads/disciplinas/engsoft/slides/Slide%206%20-%20Modelagem%20de%20Entidades%20e%20Relacionamentos.pdf>)
+
+[6.2] [www.youtube.com/watch?v=0hWbjOT_I4M](https://www.youtube.com/watch?v=0hWbjOT_I4M)
+
+[6.3] [www.youtube.com/watch?v=OQQmjbGX9nM](https://www.youtube.com/watch?v=OQQmjbGX9nM)

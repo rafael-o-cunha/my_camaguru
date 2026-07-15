@@ -26,7 +26,7 @@ Camagru
 - JSP (Views)
 - Servlets (Controllers)
 - Services
-- DAO
+- DAO/Repository
 - PostgreSQL
 - Storage
 
@@ -46,7 +46,7 @@ camagru/
 │           │           └── camagru/
 │           │               ├── controller/
 │           │               ├── service/
-│           │               ├── dao/
+│           │               ├── repository/
 │           │               ├── model/
 │           │               ├── dto/
 │           │               ├── validation/
