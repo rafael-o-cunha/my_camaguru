@@ -166,34 +166,43 @@ foi possível usar:
 - tipo_reação também é um catálogo, e ele é acionado quando uma reação ocorre em um post por um usuário, assim a tabela reação apenas associa as 3 entidades.
 - sticker não tem relação com ninguém nessa versão pois ele é materializado dentro de uma imagem editada, ele existe apenas como catálogo sob esta ótica.
 
-
-
-
-
 ### V2 trata relação de sticker e reação para amadurecer modelo de forma escalável, analítica e configurável.
-
-
 
 ![1784125577288](image/notas/1784125577288.png)
 
 - neste caso decidi trabalhar mais nas relações de reação e sticker de forma a evitar possível n:n mais pra frente e também para atender uma ideia que tive que é responder perguntas mais analíticas sobre reações e stickers e seus usos assim como configurá-los de forma extensível sem atingir o modelo futuramente.,
 - mudei o nome para ficar mais claro o que é domínio e evento
 
-
 ### V3 refinando, adicionando autorelacionamento no comentário.
 
 ![1784145051775](image/notas/1784145051775.png)
-
 
 - adicionado auto-relacionamento em comentário para que seja possível desenvolver a funcionalidade de comentários que respondem outros comentários, algo que poderia ser feito posteriormente, porém apliquei a prática de auto-relacionamento logo no início do projeto. [6]
 - também declarei no modelo as cardinalidades que estão presentes atualmente no modelo.
 - cada entidade possui identidade própria e motivo para existir de forma independente.
 - a partir deste ponto pode ser possível a criação do modelo lógico e revisão de regras, requisitos e posteriormente criação do dicionário de dados.
-
-
+- ==depois dessa etapa precisam ser criadas no modelo entidades de parametrização que irá gerar uma V4==
 
 - [ ] Modelo Lógico
+
+### V1 Modelo lógico com atributos e cardinalidades
+
+![1784159030614](image/notas/1784159030614.png)
+
+- criei o modelo lógico com as relações e cardinalidades, porém nesta etapa já foi possível perceber possíveis melhorias como a inclusão de tabelas de parametrização da aplicação.
+- percebo que pode ser interessante colocar atributos updated_at e is_active em entidades que não tem, e acrescer talvez atributo para soft delete.
+
+
+
+
 - [ ] Dicionário de dados.
+
+- criei um documento de dicionário de dados que evolui junto com a modelagem lógica e conceitual a partir do momento que comecei a criar os atributos na modelagem lógica.
+
+> docs/06-modelo_dados.md
+
+
+
 - [ ] Materializar modelo em Banco de dados Postgres(schema criado)
 - [ ] Criar massa inicial para validar modelo e iniciar desenvolvimento (seed))
 
@@ -234,7 +243,7 @@ foi possível usar:
 [5.5] https://refactoring.guru/design-patterns/factory-method
 [5.6] https://medium.com/@ucgorai/understanding-and-using-the-factory-design-pattern-in-java-06dcb8458983
 
-[6] [www.alura.com.br/artigos/relacionamento-reflexivo-modelagem-banco-de-dados?srsltid=AfmBOorIO-5ma0glXvj_hbs5ORXdaUVOY_Tu8j6lRGnMZ4nJNvR9D9h-](https://www.alura.com.br/artigos/relacionamento-reflexivo-modelagem-banco-de-dados?srsltid=AfmBOorIO-5ma0glXvj_hbs5ORXdaUVOY_Tu8j6lRGnMZ4nJNvR9D9h-)  
+[6] [www.alura.com.br/artigos/relacionamento-reflexivo-modelagem-banco-de-dados?srsltid=AfmBOorIO-5ma0glXvj_hbs5ORXdaUVOY_Tu8j6lRGnMZ4nJNvR9D9h-](https://www.alura.com.br/artigos/relacionamento-reflexivo-modelagem-banco-de-dados?srsltid=AfmBOorIO-5ma0glXvj_hbs5ORXdaUVOY_Tu8j6lRGnMZ4nJNvR9D9h-)
 
 [6.1] [www.inf.ufes.br/~jssalamon/wp-content/uploads/disciplinas/engsoft/slides/Slide%206%20-%20Modelagem%20de%20Entidades%20e%20Relacionamentos.pdf](<https://www.inf.ufes.br/~jssalamon/wp-content/uploads/disciplinas/engsoft/slides/Slide%206%20-%20Modelagem%20de%20Entidades%20e%20Relacionamentos.pdf>)
 
