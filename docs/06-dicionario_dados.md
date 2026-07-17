@@ -28,8 +28,8 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 | id_user                     | UUID             |    | ✓ |      ✓      | Relação 1:1 com Usuário. UNIQUE.                    |
 | display_name                | VARCHAR(100)     |    |    |      ✓      | Nome exibido publicamente.                             |
 | bibliography                | TEXT             |    |    |              | Descrição do usuário.                               |
-| avatar_id                   | VARCHAR(255)     |    |    |              | Identificador do avatar armazenado no Storage.         |
-| cover_id                    | VARCHAR(255)     |    |    |              | Identificador da imagem de capa armazenada no Storage. |
+| avatar_storage_id           | VARCHAR(255)     |    |    |              | Identificador do avatar armazenado no Storage.         |
+| cover_storage_id            | VARCHAR(255)     |    |    |              | Identificador da imagem de capa armazenada no Storage. |
 | enable_comment_notification | BOOLEAN          |    |    |      ✓      | Preferência de receber e-mails de novos comentários. |
 | created_at                  | TIMESTAMP        |    |    |      ✓      | Data de criação do perfil.                           |
 | updated_at                  | TIMESTAMP        |    |    |      ✓      | Última atualização do perfil.                       |
@@ -42,7 +42,7 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 | ---------- | ---------------- | :-: | :-: | :----------: | -------------------------------------- |
 | id         | UUID             | ✓ |    |      ✓      | Identificador único da publicação.  |
 | id_user    | UUID             |    | ✓ |      ✓      | Autor da publicação.                 |
-| caption    | VARCHAR(255)     |    |    |              | Texto descritivo da publicação.      |
+| caption    | TEXT             |    |    |              | Texto descritivo da publicação.      |
 | created_at | TIMESTAMP        |    |    |      ✓      | Data/hora da publicação.             |
 | updated_at | TIMESTAMP        |    |    |      ✓      | Última atualização da publicação. |
 
@@ -50,19 +50,13 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 
 ## Media
 
-| Atributo      | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                    |
-| ------------- | ---------------- | :-: | :-: | :----------: | ----------------------------------------------- |
-| id            | UUID             | ✓ |    |      ✓      | Identificador único da mídia.                 |
-| id_post       | UUID             |    | ✓ |      ✓      | Publicação à qual a mídia pertence.         |
-| media_id      | VARCHAR(255)     |    |    |      ✓      | Identificador do objeto armazenado no Storage.  |
-| file_name     | VARCHAR(255)     |    |    |      ✓      | Nome original do arquivo enviado pelo usuário. |
-| media_type    | VARCHAR(20)      |    |    |      ✓      | Ex.: IMAGE, GIF, VIDEO.                         |
-| mime_type     | VARCHAR(100)     |    |    |      ✓      | Ex.: image/png, image/jpeg.                     |
-| size          | BIGINT           |    |    |      ✓      | Tamanho do arquivo em bytes.                    |
-| width         | INTEGER          |    |    |              | Largura da imagem ou vídeo em pixels.          |
-| height        | INTEGER          |    |    |              | Altura da imagem ou vídeo em pixels.           |
-| display_order | SMALLINT         |    |    |      ✓      | Ordem de exibição da mídia dentro do post.   |
-| created_at    | TIMESTAMP        |    |    |      ✓      | Data/hora do armazenamento da mídia.           |
+| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
+|----------|-----------------|:--:|:--:|:------------:|------------|
+| id | UUID | ✓ | | ✓ | Identificador único da mídia. |
+| id_post | UUID | | ✓ | ✓ | Publicação à qual a mídia pertence. |
+| storage_id | VARCHAR(255) | | | ✓ | Identificador do objeto armazenado no Storage. |
+| display_order | SMALLINT | | | ✓ | Ordem de exibição da mídia no post. |
+| created_at | TIMESTAMP | | | ✓ | Data de armazenamento da mídia. |
 
 ---
 
@@ -74,7 +68,7 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 | id_post           | UUID             |    | ✓ |      ✓      | Post ao qual o comentário pertence.                         |
 | id_user           | UUID             |    | ✓ |      ✓      | Autor do comentário.                                        |
 | parent_comment_id | UUID             |    | ✓ |              | Referência ao comentário respondido (auto-relacionamento). |
-| content           | VARCHAR(255)     |    |    |      ✓      | Texto do comentário.                                        |
+| content           | TEXT             |    |    |      ✓      | Texto do comentário.                                        |
 | created_at        | TIMESTAMP        |    |    |      ✓      | Data/hora da criação do comentário.                       |
 | updated_at        | TIMESTAMP        |    |    |              | Última edição do comentário.                             |
 
@@ -82,16 +76,16 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 
 ## Sticker
 
-| Atributo    | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                          |
-| ----------- | ---------------- | :-: | :-: | :----------: | ----------------------------------------------------- |
-| id          | UUID             | ✓ |    |      ✓      | Identificador único do sticker.                      |
-| name        | VARCHAR(100)     |    |    |      ✓      | Nome de identificação do sticker.                   |
-| description | TEXT             |    |    |              | Descrição opcional do sticker.                      |
-| sticker_id  | VARCHAR(255)     |    |    |      ✓      | Identificador do arquivo armazenado no MinIO.         |
-| category    | VARCHAR(50)      |    |    |              | Categoria do sticker (Animais, Emojis, Objetos etc.). |
-| is_active   | BOOLEAN          |    |    |      ✓      | Permite ativar/desativar o sticker sem removê-lo.    |
-| created_at  | TIMESTAMP        |    |    |      ✓      | Data de cadastro do sticker.                          |
-| updated_at  | TIMESTAMP        |    |    |              | Última edição do sticker.                          |
+| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
+|----------|-----------------|:--:|:--:|:------------:|------------|
+| id | UUID | ✓ | | ✓ | Identificador único do sticker. |
+| name | VARCHAR(100) | | | ✓ | Nome do sticker. |
+| storage_id | VARCHAR(255) | | | ✓ | Identificador do arquivo armazenado no Storage. |
+| description | TEXT | | | | Descrição do sticker. |
+| category | VARCHAR(50) | | | | Categoria do sticker. |
+| is_active | BOOLEAN | | | ✓ | Indica se o sticker está disponível para utilização. |
+| created_at | TIMESTAMP | | | ✓ | Data de cadastro do sticker. |
+| updated_at | TIMESTAMP | | | | Última atualização do cadastro. |
 
 ---
 
@@ -132,3 +126,16 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 | id_user     | UUID             |    | ✓ |      ✓      | Usuário que realizou a reação.           |
 | id_reaction | UUID             |    | ✓ |      ✓      | Tipo de reação aplicada.                  |
 | created_at  | TIMESTAMP        |    |    |      ✓      | Data/hora em que a reação foi registrada. |
+
+
+---
+
+## Follow
+
+| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
+|----------|-----------------|:--:|:--:|:------------:|------------|
+| id_follower | UUID | ✓ | ✓ | ✓ | Usuário que segue outro usuário. Parte da chave primária composta. |
+| id_following | UUID | ✓ | ✓ | ✓ | Usuário seguido. Parte da chave primária composta. |
+| created_at | TIMESTAMP | | | ✓ | Data em que o relacionamento de seguimento foi criado. |
+
+

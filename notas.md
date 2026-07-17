@@ -181,9 +181,9 @@ foi possível usar:
 - também declarei no modelo as cardinalidades que estão presentes atualmente no modelo.
 - cada entidade possui identidade própria e motivo para existir de forma independente.
 - a partir deste ponto pode ser possível a criação do modelo lógico e revisão de regras, requisitos e posteriormente criação do dicionário de dados.
-- ==depois dessa etapa precisam ser criadas no modelo entidades de parametrização que irá gerar uma V4==
+- depois dessa etapa precisam ser criadas no modelo entidades de parametrização que irá gerar uma V4...
 
-- [ ] Modelo Lógico
+- [X] Modelo Lógico
 
 ### V1 Modelo lógico com atributos e cardinalidades
 
@@ -192,14 +192,34 @@ foi possível usar:
 - criei o modelo lógico com as relações e cardinalidades, porém nesta etapa já foi possível perceber possíveis melhorias como a inclusão de tabelas de parametrização da aplicação.
 - percebo que pode ser interessante colocar atributos updated_at e is_active em entidades que não tem, e acrescer talvez atributo para soft delete.
 
-
-
-
-- [ ] Dicionário de dados.
+- [X] Dicionário de dados.
 
 - criei um documento de dicionário de dados que evolui junto com a modelagem lógica e conceitual a partir do momento que comecei a criar os atributos na modelagem lógica.
 
 > docs/06-modelo_dados.md
+
+
+
+## V4 do modelo conceitual (modelo principal)
+
+![1784326715604](image/notas/1784326715604.png)
+
+- evoluindo modelo para que usuários possam seguir outros usuários.
+- simplificação da entidade de Mídia (media) pois diversos attr ficarão sob responsabilidade da parametrização.
+- também criarei outros modelos que estão diretamente ligados ao principal, mas visualmente separados para evitar confusão visual
+
+
+## V2 do modelo lógico correspondendo a V4 do modelo conceitual.
+
+![1784326790939](image/notas/1784326790939.png)
+
+- neste caso o modelo lógico apenas refletiu as alterações do conceitual e simplficiação de entidade conforme mencionado anteriormente.
+
+- dicionário de dados atualizado.
+
+
+
+
 
 
 
