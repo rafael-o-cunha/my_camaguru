@@ -214,13 +214,65 @@ foi possível usar:
 ![1784326790939](image/notas/1784326790939.png)
 
 - neste caso o modelo lógico apenas refletiu as alterações do conceitual e simplficiação de entidade conforme mencionado anteriormente.
-
 - dicionário de dados atualizado.
+- considero a parte acima como ==módulo social== e depois pude implementar o ==módulo de moderação== e ==módulo de administração==
 
 
+### Módulo de moderação (modelo de dados)
+
+![1784330422424](image/notas/1784330422424.png)
+
+- Em uma visão simplificada do modelo que mostra a relação de usuário com post eu deixei visível de forma clara e simples que um post poderá ser moderado por um moderador
+- a moderação precisa ser justificada, na prática o post pode ser bloqueado, desbloqueado, etc. de forma a permitir a moderação interagir com usuário(não está previsto aqui) e baseado em alguma justificativa liberar o post novamente, por exemplo.
+- o mesmo padrão de moderação foi aplicado para usuários, com isso tipo_moderação terá o domínio específicado para evitar duas tabelas.
+
+![1784331191172](image/notas/1784331191172.png)
+
+- diagrama lógico simplificado da moderação
 
 
+### Módulo administração (modelo de dados)
 
+
+![1784334156265](image/notas/1784334156265.png)
+
+- finalizando o modelo na versão V4.2 incluindo depois da moderação as configurações de mídia, post e papel do usuário 9que viabiliza área administrativa e de moderação.
+- com isso foi incluído uma relação com usuário, onde um atributo novo foi incluído na entidade usuário.
+- como usuário pode ser admin e usuário normal da rede assim como o modeador... então um usuário pode der um ou mais papéis, pra resolver isso coloquei entidade associativa.
+
+
+### Modelo lógico da administração e moderação
+
+
+![1784334796184](image/notas/1784334796184.png)
+
+- eu até coloquei boolean para saber se está habilitado post com mais de uma mídia ou não, mas depois mudei de ideia pois pode ser feito  pelo campo de max_media_per_post.
+- analisando o contexto geral do modelo consigo perceber:
+  - **Rede Social**
+    - usuário
+    - Perfil
+    - Post
+    - Midia
+  - **Segurança**
+    - Papel
+    - usuário_papel
+  - **Moderação**
+    - moderação_Post
+    - Moderação_Usuário
+    - Tipo_Moderação
+  - **Administração**
+    - Configuração_Post
+    - Configuração_Mídia
+    - Tipo_mídia.
+
+## Considerações finais  quanto ao modelo de dados
+
+- aqui considero a versão 4 + 4.2 do modelo conceitual  incluindo versão 2 + 2.1 do modelo lógico concluídos para serem materializadas e testadas.
+- A partir deste ponto irei atualizar documentos do projeto para que possam refletir a conclusão do modelo pois indo além do que é mandatório do projeto, ja será estabelecido aplicação do bônus, onde quero:
+  - aplicar admin, moderçaão, reações além de curtir e stickers assim como análise da rede pela visão do admin.
+
+
+---
 
 
 - [ ] Materializar modelo em Banco de dados Postgres(schema criado)
