@@ -1,104 +1,112 @@
 # Capacidades Técnicas
 
+Este documento apresenta as principais capacidades técnicas desenvolvidas durante a implementação do Camagru.
+
+As capacidades estão organizadas em funcionalidades obrigatórias e funcionalidades implementadas como evolução da especificação original (bônus).
+
+---
+
+# Capacidades Obrigatórias
+
 ```text
 Camagru
 │
 ├── Autenticação
-├── Envio de E-mail
-├── Segurança
-├── CRUD
-├── Upload
-├── Webcam
-├── Processamento de Imagem
+│   ├── Cadastro de usuários
+│   ├── Login
+│   ├── Logout
+│   ├── Recuperação de senha
+│   └── Confirmação de e-mail
+│
+├── Gerenciamento de Perfil
+│   ├── Atualização de dados
+│   ├── Avatar
+│   └── Preferências de notificação
+│
+├── Publicações
+│   ├── Upload de imagens
+│   ├── Captura via Webcam
+│   ├── Composição de imagens
+│   ├── Gerenciamento de stickers
+│   └── Exclusão de publicações
+│
+├── Galeria
+│   ├── Paginação
+│   ├── Comentários
+│   ├── Reações
+│   └── Notificações
+│
 ├── Persistência
-├── Interface Web
+│   ├── PostgreSQL
+│   ├── JDBC
+│   └── Storage de arquivos
+│
+├── Segurança
+│   ├── BCrypt
+│   ├── PreparedStatement
+│   ├── CSRF
+│   ├── XSS
+│   ├── SQL Injection
+│   └── Upload Seguro
+│
 ├── HTTP
-├── DevOps
-├── AJAX (Bônus)
-└── Administração (Bônus)
+│
+├── Interface Web
+│
+├── Processamento de Imagem
+│
+├── Envio de E-mail
+│
+└── DevOps
+    ├── Docker
+    └── Docker Compose
 ```
 
 ---
 
-# Arquitetura em camadas
-
-- Browser
-- JSP (Views)
-- Servlets (Controllers)
-- Services
-- DAO/Repository
-- PostgreSQL
-- Storage
-
----
-
-# Estrutura do Projeto
+# Capacidades Bônus
 
 ```text
-camagru/
-├── app/
-│   ├── pom.xml
-│   └── src/
-│       └── main/
-│           ├── java/
-│           │   └── com/
-│           │       └── rafade-o/
-│           │           └── camagru/
-│           │               ├── controller/
-│           │               ├── service/
-│           │               ├── repository/
-│           │               ├── model/
-│           │               ├── dto/
-│           │               ├── validation/
-│           │               ├── security/
-│           │               ├── config/
-│           │               ├── util/
-│           │               └── exception/
-│           │
-│           ├── resources/
-│           └── webapp/
-│               │
-│               ├── assets/
-│               │   ├── css/
-│               │   ├── js/
-│               │   ├── images/
-│               │   └── stickers/
-│               │
-│               ├── uploads/
-│               │
-│               ├── views/
-│               │   ├── auth/
-│               │   ├── gallery/
-│               │   ├── editor/
-│               │   ├── profile/
-│               │   ├── admin/
-│               │   ├── error/
-│               │   └── shared/
-│               │
-│               └── WEB-INF/
-│                   └── web.xml
+Camagru
 │
-├── docs/
-│   ├── 01-requisitos.md
-│   ├── 02-regras-negocio.md
-│   ├── 03-modelagem.md
-│   ├── 04-capacidades-e-arquitetura.md
-│   └── 05-php-java-equivalencia.md
+├── Administração
+│   ├── Papéis de acesso
+│   ├── Configuração de Post
+│   ├── Configuração de Mídia
+│   ├── Tipos de Mídia
+│   ├── Gerenciamento de Reações
+│   └── Gerenciamento de Stickers
 │
-├── infra/
-│   │
-│   ├── app/
-│   │   └── Dockerfile
-│   │
-│   ├── postgres/
-│   │   ├── init.sql
-│   │   ├── schema.sql
-│   │   ├── seed.sql
-│   │   └── data/
-│   │
-│   └── docker-compose.yml
+├── Moderação
+│   ├── Moderação de Usuários
+│   ├── Moderação de Publicações
+│   └── Tipos de Moderação
 │
-├── Makefile
-├── README.md
-└── notas.md
+├── Rede Social
+│   ├── Seguir usuários
+│   ├── Respostas a comentários
+│   └── Múltiplos papéis
+│
+└── Experiência do Usuário
+    ├── AJAX
+    ├── Upload assíncrono
+    ├── Atualização assíncrona de comentários
+    └── Atualização assíncrona de reações
 ```
+
+---
+
+# Resumo das Capacidades
+
+| Categoria | Capacidades |
+|-----------|-------------|
+| Autenticação | Cadastro, Login, Logout, Recuperação de Senha, Confirmação de E-mail |
+| Perfil | Gerenciamento de Perfil e Preferências |
+| Publicações | Upload, Webcam, Composição de Imagens e Stickers |
+| Galeria | Paginação, Comentários, Reações e Notificações |
+| Persistência | PostgreSQL, JDBC e Storage |
+| Segurança | BCrypt, CSRF, XSS, SQL Injection, Upload Seguro |
+| Administração (Bônus) | Configurações da aplicação, Papéis e Catálogos |
+| Moderação (Bônus) | Moderação de Usuários e Publicações |
+| Rede Social (Bônus) | Follow, Respostas e Papéis |
+| UX (Bônus) | AJAX e Atualizações Assíncronas |

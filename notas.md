@@ -1,5 +1,6 @@
 ## Criar, configurar e iniciar o projeto (1)
 
+
 ### Setup base
 
 - [X] criar projeto
@@ -198,8 +199,6 @@ foi possível usar:
 
 > docs/06-modelo_dados.md
 
-
-
 ## V4 do modelo conceitual (modelo principal)
 
 ![1784326715604](image/notas/1784326715604.png)
@@ -208,7 +207,6 @@ foi possível usar:
 - simplificação da entidade de Mídia (media) pois diversos attr ficarão sob responsabilidade da parametrização.
 - também criarei outros modelos que estão diretamente ligados ao principal, mas visualmente separados para evitar confusão visual
 
-
 ## V2 do modelo lógico correspondendo a V4 do modelo conceitual.
 
 ![1784326790939](image/notas/1784326790939.png)
@@ -216,7 +214,6 @@ foi possível usar:
 - neste caso o modelo lógico apenas refletiu as alterações do conceitual e simplficiação de entidade conforme mencionado anteriormente.
 - dicionário de dados atualizado.
 - considero a parte acima como ==módulo social== e depois pude implementar o ==módulo de moderação== e ==módulo de administração==
-
 
 ### Módulo de moderação (modelo de dados)
 
@@ -230,9 +227,7 @@ foi possível usar:
 
 - diagrama lógico simplificado da moderação
 
-
 ### Módulo administração (modelo de dados)
-
 
 ![1784334156265](image/notas/1784334156265.png)
 
@@ -240,9 +235,7 @@ foi possível usar:
 - com isso foi incluído uma relação com usuário, onde um atributo novo foi incluído na entidade usuário.
 - como usuário pode ser admin e usuário normal da rede assim como o modeador... então um usuário pode der um ou mais papéis, pra resolver isso coloquei entidade associativa.
 
-
 ### Modelo lógico da administração e moderação
-
 
 ![1784334796184](image/notas/1784334796184.png)
 
@@ -271,9 +264,7 @@ foi possível usar:
 - A partir deste ponto irei atualizar documentos do projeto para que possam refletir a conclusão do modelo pois indo além do que é mandatório do projeto, ja será estabelecido aplicação do bônus, onde quero:
   - aplicar admin, moderçaão, reações além de curtir e stickers assim como análise da rede pela visão do admin.
 
-
 ---
-
 
 - [ ] Materializar modelo em Banco de dados Postgres(schema criado)
 - [ ] Criar massa inicial para validar modelo e iniciar desenvolvimento (seed))
