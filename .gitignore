@@ -66,3 +66,6 @@ infra/.env
 *.tmp
 *.bak
 *.swp
+
+notas/notas-arq.md
+notas/notas-task.md
