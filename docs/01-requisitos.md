@@ -1,12 +1,71 @@
 # Camagru
 
-# Objetivo
+## Objetivo
 
 Desenvolver uma aplicação web que permita aos usuários capturar imagens pela webcam ou realizar upload de arquivos, aplicar stickers, gerar uma composição de imagem no servidor, publicar o resultado em uma galeria pública e interagir através de reações e comentários, garantindo autenticação, segurança, responsividade e extensibilidade da plataforma.
 
+
 ---
 
-# Escopo
+
+
+## Protótipos de Interface
+
+Durante a etapa de levantamento de requisitos foram produzidos **protótipos** de interface utilizando **Inteligência Artificial**.
+
+Os protótipos têm como objetivo representar uma possível experiência de uso da aplicação, auxiliando na validação dos requisitos funcionais, na organização dos fluxos de navegação e na definição das principais telas antes do início da implementação.
+
+**Estas imagens possuem caráter ilustrativo** **e não representam o layout definitivo da aplicação**. Durante o desenvolvimento poderão ocorrer alterações de usabilidade, identidade visual e organização dos componentes conforme a evolução do projeto.
+
+## Autenticação e Perfil
+
+![1784375287461](image/01-requisitos/1784375287461.png)
+
+As telas desta seção representam os fluxos relacionados à autenticação do usuário, recuperação de senha e gerenciamento do perfil.
+
+Fluxos ilustrados:
+
+- Login
+- Recuperação de senha
+- Redefinição de senha
+- Perfil do usuário
+- Alteração de senha
+- Configurações de privacidade
+
+## Upload e Processamento de Imagens
+
+![1784375307206](image/01-requisitos/1784375307206.png)
+
+Esta seção apresenta um exemplo de fluxo para criação de uma publicação.
+
+Fluxos ilustrados:
+
+- Upload de imagens
+- Validação de arquivos
+- Captura pela webcam
+- Permissão da câmera
+- Composição da imagem
+- Aplicação de stickers
+- Geração da imagem final
+
+## Publicação e Interação
+
+![1784375324584](image/01-requisitos/1784375324584.png)
+
+Esta seção apresenta um exemplo de interação entre usuários na galeria da aplicação.
+
+Fluxos ilustrados:
+
+- Visualização de publicação
+- Listagem de comentários
+- Publicação de comentários
+- Resposta a comentários
+- Edição de comentários
+- Exclusão de comentários
+
+---
+
+## Escopo
 
 ## Inclui
 
@@ -36,7 +95,7 @@ Desenvolver uma aplicação web que permita aos usuários capturar imagens pela 
 
 ---
 
-# Requisitos Funcionais Obrigatórios
+## Requisitos Funcionais Obrigatórios
 
 ## Usuários
 
@@ -105,7 +164,7 @@ Desenvolver uma aplicação web que permita aos usuários capturar imagens pela 
 
 ---
 
-# Funcionalidades Bônus
+## Funcionalidades Bônus
 
 As funcionalidades abaixo representam evoluções da aplicação e não fazem parte dos requisitos obrigatórios definidos pela especificação original do projeto.
 
@@ -157,63 +216,7 @@ As funcionalidades abaixo representam evoluções da aplicação e não fazem pa
 | RB019   | Atualizar comentários sem recarregar a página (AJAX). |
 | RB020   | Realizar upload assíncrono de arquivos.                |
 
-
 ---
-
-
-# Protótipos de Interface
-
-Durante a etapa de levantamento de requisitos foram produzidos **protótipos** de interface utilizando **Inteligência Artificial**.
-
-Os protótipos têm como objetivo representar uma possível experiência de uso da aplicação, auxiliando na validação dos requisitos funcionais, na organização dos fluxos de navegação e na definição das principais telas antes do início da implementação.
-
-Estas imagens possuem caráter ilustrativo e não representam o layout definitivo da aplicação. Durante o desenvolvimento poderão ocorrer alterações de usabilidade, identidade visual e organização dos componentes conforme a evolução do projeto.
-
-## Autenticação e Perfil
-
-![1784375287461](image/01-requisitos/1784375287461.png)
-
-As telas desta seção representam os fluxos relacionados à autenticação do usuário, recuperação de senha e gerenciamento do perfil.
-
-Fluxos ilustrados:
-
-- Login
-- Recuperação de senha
-- Redefinição de senha
-- Perfil do usuário
-- Alteração de senha
-- Configurações de privacidade
-
-## Upload e Processamento de Imagens
-
-![1784375307206](image/01-requisitos/1784375307206.png)
-
-Esta seção apresenta um exemplo de fluxo para criação de uma publicação.
-
-Fluxos ilustrados:
-
-- Upload de imagens
-- Validação de arquivos
-- Captura pela webcam
-- Permissão da câmera
-- Composição da imagem
-- Aplicação de stickers
-- Geração da imagem final
-
-## Publicação e Interação
-
-![1784375324584](image/01-requisitos/1784375324584.png)
-
-Esta seção apresenta um exemplo de interação entre usuários na galeria da aplicação.
-
-Fluxos ilustrados:
-
-- Visualização de publicação
-- Listagem de comentários
-- Publicação de comentários
-- Resposta a comentários
-- Edição de comentários
-- Exclusão de comentários
 
 # Considerações
 

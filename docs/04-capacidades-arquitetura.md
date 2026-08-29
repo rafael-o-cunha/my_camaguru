@@ -58,7 +58,7 @@ Camagru
 ├── Envio de E-mail
 │
 └── DevOps
-    ├── Docker
+    ├── Docker (Container, Rede e Volume)
     └── Docker Compose
 ```
 
@@ -98,15 +98,15 @@ Camagru
 
 # Resumo das Capacidades
 
-| Categoria | Capacidades |
-|-----------|-------------|
-| Autenticação | Cadastro, Login, Logout, Recuperação de Senha, Confirmação de E-mail |
-| Perfil | Gerenciamento de Perfil e Preferências |
-| Publicações | Upload, Webcam, Composição de Imagens e Stickers |
-| Galeria | Paginação, Comentários, Reações e Notificações |
-| Persistência | PostgreSQL, JDBC e Storage |
-| Segurança | BCrypt, CSRF, XSS, SQL Injection, Upload Seguro |
-| Administração (Bônus) | Configurações da aplicação, Papéis e Catálogos |
-| Moderação (Bônus) | Moderação de Usuários e Publicações |
-| Rede Social (Bônus) | Follow, Respostas e Papéis |
-| UX (Bônus) | AJAX e Atualizações Assíncronas |
+| Categoria                | Capacidades                                                              |
+| ------------------------ | ------------------------------------------------------------------------ |
+| Autenticação           | Cadastro, Login, Logout, Recuperação de Senha, Confirmação de E-mail |
+| Perfil                   | Gerenciamento de Perfil e Preferências                                  |
+| Publicações            | Upload, Webcam, Composição de Imagens e Stickers                       |
+| Galeria                  | Paginação, Comentários, Reações e Notificações                    |
+| Persistência            | PostgreSQL, JDBC e Storage                                               |
+| Segurança               | BCrypt, CSRF, XSS, SQL Injection, Upload Seguro                          |
+| Administração (Bônus) | Configurações da aplicação, Papéis e Catálogos                     |
+| Moderação (Bônus)     | Moderação de Usuários e Publicações                                 |
+| Rede Social (Bônus)     | Follow, Respostas e Papéis                                              |
+| UX (Bônus)              | AJAX e Atualizações Assíncronas                                       |
