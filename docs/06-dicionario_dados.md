@@ -4,7 +4,6 @@ Este documento detalha os atributos identificados durante a construção do mode
 
 Enquanto o modelo conceitual representa o domínio por meio de entidades e relacionamentos, e o modelo lógico apresenta as tabelas e  seus atributos principais, o dicionário de dados descreve tecnicamente cada atributo, indicando seu tipo de dado, restrições, finalidade e relacionamento com as regras de negócio.
 
-
 ## Social
 
 ## User
@@ -12,10 +11,10 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 | Atributo       | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                            |
 | -------------- | ---------------- | :-: | :-: | :----------: | ------------------------------------------------------- |
 | id             | UUID             | ✓ |    |      ✓      | Identificador único do usuário.                       |
-| user_role_id        | UUID             |    | ✓ |      ✓      | Papel atribuído ao usuário da aplicação.                 |
+| user_role_id   | UUID             |    | ✓ |      ✓      | Papel atribuído ao usuário da aplicação.            |
 | username       | VARCHAR(50)      |    |    |      ✓      | Nome de usuário utilizado para login. Deve ser único. |
 | email          | VARCHAR(255)     |    |    |      ✓      | E-mail do usuário. Deve ser único.                    |
-| password       | VARCHAR(255)     |    |    |      ✓      | Hash da senha (bcrypt).                                 |
+| password       | VARCHAR(255)     |    |    |      ✓      | Hash da senha.                                          |
 | email_verified | BOOLEAN          |    |    |      ✓      | Indica se o e-mail foi confirmado.                      |
 | is_active      | BOOLEAN          |    |    |      ✓      | Permite desativar usuários sem removê-los.            |
 | created_at     | TIMESTAMP        |    |    |      ✓      | Data de criação da conta.                             |
@@ -54,13 +53,13 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 
 ## Media
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador único da mídia. |
-| id_post | UUID | | ✓ | ✓ | Publicação à qual a mídia pertence. |
-| storage_id | VARCHAR(255) | | | ✓ | Identificador do objeto armazenado no Storage. |
-| display_order | SMALLINT | | | ✓ | Ordem de exibição da mídia no post. |
-| created_at | TIMESTAMP | | | ✓ | Data de armazenamento da mídia. |
+| Atributo      | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                   |
+| ------------- | ---------------- | :-: | :-: | :----------: | ---------------------------------------------- |
+| id            | UUID             | ✓ |    |      ✓      | Identificador único da mídia.                |
+| id_post       | UUID             |    | ✓ |      ✓      | Publicação à qual a mídia pertence.        |
+| storage_id    | VARCHAR(255)     |    |    |      ✓      | Identificador do objeto armazenado no Storage. |
+| display_order | SMALLINT         |    |    |      ✓      | Ordem de exibição da mídia no post.         |
+| created_at    | TIMESTAMP        |    |    |      ✓      | Data de armazenamento da mídia.               |
 
 ---
 
@@ -80,16 +79,16 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 
 ## Sticker
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador único do sticker. |
-| name | VARCHAR(100) | | | ✓ | Nome do sticker. |
-| storage_id | VARCHAR(255) | | | ✓ | Identificador do arquivo armazenado no Storage. |
-| description | TEXT | | | | Descrição do sticker. |
-| category | VARCHAR(50) | | | | Categoria do sticker. |
-| is_active | BOOLEAN | | | ✓ | Indica se o sticker está disponível para utilização. |
-| created_at | TIMESTAMP | | | ✓ | Data de cadastro do sticker. |
-| updated_at | TIMESTAMP | | | | Última atualização do cadastro. |
+| Atributo    | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                             |
+| ----------- | ---------------- | :-: | :-: | :----------: | -------------------------------------------------------- |
+| id          | UUID             | ✓ |    |      ✓      | Identificador único do sticker.                         |
+| name        | VARCHAR(100)     |    |    |      ✓      | Nome do sticker.                                         |
+| storage_id  | VARCHAR(255)     |    |    |      ✓      | Identificador do arquivo armazenado no Storage.          |
+| description | TEXT             |    |    |              | Descrição do sticker.                                  |
+| category    | VARCHAR(50)      |    |    |              | Categoria do sticker.                                    |
+| is_active   | BOOLEAN          |    |    |      ✓      | Indica se o sticker está disponível para utilização. |
+| created_at  | TIMESTAMP        |    |    |      ✓      | Data de cadastro do sticker.                             |
+| updated_at  | TIMESTAMP        |    |    |              | Última atualização do cadastro.                       |
 
 ---
 
@@ -131,134 +130,117 @@ Enquanto o modelo conceitual representa o domínio por meio de entidades e relac
 | id_reaction | UUID             |    | ✓ |      ✓      | Tipo de reação aplicada.                  |
 | created_at  | TIMESTAMP        |    |    |      ✓      | Data/hora em que a reação foi registrada. |
 
-
 ---
 
 ## Follow
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id_follower | UUID | ✓ | ✓ | ✓ | Usuário que segue outro usuário. Parte da chave primária composta. |
-| id_following | UUID | ✓ | ✓ | ✓ | Usuário seguido. Parte da chave primária composta. |
-| created_at | TIMESTAMP | | | ✓ | Data em que o relacionamento de seguimento foi criado. |
-
+| Atributo     | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                                          |
+| ------------ | ---------------- | :-: | :-: | :----------: | --------------------------------------------------------------------- |
+| id_follower  | UUID             | ✓ | ✓ |      ✓      | Usuário que segue outro usuário. Parte da chave primária composta. |
+| id_following | UUID             | ✓ | ✓ |      ✓      | Usuário seguido. Parte da chave primária composta.                  |
+| created_at   | TIMESTAMP        |    |    |      ✓      | Data em que o relacionamento de seguimento foi criado.                |
 
 ---
 
 ## Moderation
 
-
 ## UserModeration
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador da ação de moderação. |
-| id_user | UUID | | ✓ | ✓ | Usuário que recebeu a ação de moderação. |
-| id_moderator | UUID | | ✓ | ✓ | Usuário responsável pela moderação. |
-| moderation_type_id | UUID | | ✓ | ✓ | Tipo de moderação aplicada. |
-| note | TEXT | | |    | Justificativa complementar informada pelo moderador. |
-| created_at | TIMESTAMP | | | ✓ | Data e hora da ação de moderação. |
-
+| Atributo           | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                         |
+| ------------------ | ---------------- | :-: | :-: | :----------: | ---------------------------------------------------- |
+| id                 | UUID             | ✓ |    |      ✓      | Identificador da ação de moderação.              |
+| id_user            | UUID             |    | ✓ |      ✓      | Usuário que recebeu a ação de moderação.        |
+| id_moderator       | UUID             |    | ✓ |      ✓      | Usuário responsável pela moderação.              |
+| moderation_type_id | UUID             |    | ✓ |      ✓      | Tipo de moderação aplicada.                        |
+| note               | TEXT             |    |    |              | Justificativa complementar informada pelo moderador. |
+| created_at         | TIMESTAMP        |    |    |      ✓      | Data e hora da ação de moderação.                |
 
 ---
-
 
 # ModerationPost
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador da ação de moderação. |
-| id_post | UUID | | ✓ | ✓ | Publicação que recebeu a moderação. |
-| id_moderator | UUID | | ✓ | ✓ | Usuário responsável pela moderação. |
-| moderation_type_id | UUID | | ✓ | ✓ | Tipo de moderação aplicada. |
-| note | TEXT | | |    | Justificativa complementar informada pelo moderador. |
-| created_at | TIMESTAMP | | | ✓ | Data e hora da ação de moderação. |
-
+| Atributo           | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                         |
+| ------------------ | ---------------- | :-: | :-: | :----------: | ---------------------------------------------------- |
+| id                 | UUID             | ✓ |    |      ✓      | Identificador da ação de moderação.              |
+| id_post            | UUID             |    | ✓ |      ✓      | Publicação que recebeu a moderação.              |
+| id_moderator       | UUID             |    | ✓ |      ✓      | Usuário responsável pela moderação.              |
+| moderation_type_id | UUID             |    | ✓ |      ✓      | Tipo de moderação aplicada.                        |
+| note               | TEXT             |    |    |              | Justificativa complementar informada pelo moderador. |
+| created_at         | TIMESTAMP        |    |    |      ✓      | Data e hora da ação de moderação.                |
 
 ---
-
 
 ## ModerationType
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador do tipo de moderação. |
-| name | VARCHAR(100) | | | ✓ | Nome do tipo de moderação. |
-| description | TEXT | | |    | Descrição do tipo de moderação. |
-| domain | VARCHAR(20) | | | ✓ | Domínio ao qual o tipo se aplica (`POST` ou `USER`). |
-| is_active | BOOLEAN | | | ✓ | Indica se o tipo de moderação pode ser utilizado. |
-| created_at | TIMESTAMP | | | ✓ | Data de cadastro. |
-| updated_at | TIMESTAMP | | |    | Data da última atualização. |
-
+| Atributo    | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                              |
+| ----------- | ---------------- | :-: | :-: | :----------: | --------------------------------------------------------- |
+| id          | UUID             | ✓ |    |      ✓      | Identificador do tipo de moderação.                     |
+| name        | VARCHAR(100)     |    |    |      ✓      | Nome do tipo de moderação.                              |
+| description | TEXT             |    |    |              | Descrição do tipo de moderação.                       |
+| domain      | VARCHAR(20)      |    |    |      ✓      | Domínio ao qual o tipo se aplica (`POST` ou `USER`). |
+| is_active   | BOOLEAN          |    |    |      ✓      | Indica se o tipo de moderação pode ser utilizado.       |
+| created_at  | TIMESTAMP        |    |    |      ✓      | Data de cadastro.                                         |
+| updated_at  | TIMESTAMP        |    |    |              | Data da última atualização.                            |
 
 ---
-
 
 ## Administration
 
 ## Role
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador único do papel. |
-| name | VARCHAR(50) | | | ✓ | Nome do papel (ex.: `ADMIN`, `MODERADOR`, `USUARIO`). Deve ser único. |
-| description | VARCHAR(255) | | |   | Descrição da finalidade do papel. |
-| is_active | BOOLEAN | | | ✓ | Indica se o papel está disponível para atribuição a usuários. |
-| created_at | TIMESTAMP | | | ✓ | Data de criação do papel. |
-| updated_at | TIMESTAMP | | |   | Data da última atualização. |
-
+| Atributo    | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                                                |
+| ----------- | ---------------- | :-: | :-: | :----------: | --------------------------------------------------------------------------- |
+| id          | UUID             | ✓ |    |      ✓      | Identificador único do papel.                                              |
+| name        | VARCHAR(50)      |    |    |      ✓      | Nome do papel (ex.:`ADMIN`, `MODERADOR`, `USUARIO`). Deve ser único. |
+| description | VARCHAR(255)     |    |    |              | Descrição da finalidade do papel.                                         |
+| is_active   | BOOLEAN          |    |    |      ✓      | Indica se o papel está disponível para atribuição a usuários.          |
+| created_at  | TIMESTAMP        |    |    |      ✓      | Data de criação do papel.                                                 |
+| updated_at  | TIMESTAMP        |    |    |              | Data da última atualização.                                              |
 
 ---
-
 
 ## UserRole
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id_user | UUID | ✓* | ✓ | ✓ | Identificador do usuário. |
-| id_role | UUID | ✓* | ✓ | ✓ | Identificador do papel atribuído ao usuário. |
-| created_at | TIMESTAMP | | | ✓ | Data em que o papel foi atribuído ao usuário. |
-
+| Atributo   | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                    |
+| ---------- | ---------------- | :-: | :-: | :----------: | ----------------------------------------------- |
+| id_user    | UUID             | ✓* | ✓ |      ✓      | Identificador do usuário.                      |
+| id_role    | UUID             | ✓* | ✓ |      ✓      | Identificador do papel atribuído ao usuário.  |
+| created_at | TIMESTAMP        |    |    |      ✓      | Data em que o papel foi atribuído ao usuário. |
 
 ---
-
 
 ## MediaConfiguration
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador único da configuração de mídia. |
-| max_file_size | BIGINT | | | ✓ | Tamanho máximo permitido por arquivo, em bytes. |
-| allow_multiple_media | BOOLEAN | | | ✓ | Indica se uma publicação pode conter mais de uma mídia (carrossel). |
-| created_at | TIMESTAMP | | | ✓ | Data de criação da configuração. |
-| updated_at | TIMESTAMP | | |     | Data da última atualização. |
-
+| Atributo             | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                                           |
+| -------------------- | ---------------- | :-: | :-: | :----------: | ---------------------------------------------------------------------- |
+| id                   | UUID             | ✓ |    |      ✓      | Identificador único da configuração de mídia.                      |
+| max_file_size        | BIGINT           |    |    |      ✓      | Tamanho máximo permitido por arquivo, em bytes.                       |
+| allow_multiple_media | BOOLEAN          |    |    |      ✓      | Indica se uma publicação pode conter mais de uma mídia (carrossel). |
+| created_at           | TIMESTAMP        |    |    |      ✓      | Data de criação da configuração.                                   |
+| updated_at           | TIMESTAMP        |    |    |              | Data da última atualização.                                         |
 
 --
 
-
 ## MediaType
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador único do tipo de mídia. |
-| extension | VARCHAR(10) | | | ✓ | Extensão do arquivo (jpg, png, webp, mp4...). |
-| mime_type | VARCHAR(100) | | | ✓ | MIME Type utilizado na validação do upload. |
-| description | VARCHAR(100) | | | ✓ | Nome amigável do tipo de mídia. |
-| is_active | BOOLEAN | | | ✓ | Indica se o formato está disponível para upload. |
-| created_at | TIMESTAMP | | | ✓ | Data de cadastro. |
-| updated_at | TIMESTAMP | | |     | Data da última atualização. |
-
+| Atributo    | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                       |
+| ----------- | ---------------- | :-: | :-: | :----------: | -------------------------------------------------- |
+| id          | UUID             | ✓ |    |      ✓      | Identificador único do tipo de mídia.            |
+| extension   | VARCHAR(10)      |    |    |      ✓      | Extensão do arquivo (jpg, png, webp, mp4...).     |
+| mime_type   | VARCHAR(100)     |    |    |      ✓      | MIME Type utilizado na validação do upload.      |
+| description | VARCHAR(100)     |    |    |      ✓      | Nome amigável do tipo de mídia.                  |
+| is_active   | BOOLEAN          |    |    |      ✓      | Indica se o formato está disponível para upload. |
+| created_at  | TIMESTAMP        |    |    |      ✓      | Data de cadastro.                                  |
+| updated_at  | TIMESTAMP        |    |    |              | Data da última atualização.                     |
 
 ---
 
-
 ## PostConfiguration
 
-| Atributo | Tipo (sugestão) | PK | FK | Obrigatório | Observação |
-|----------|-----------------|:--:|:--:|:------------:|------------|
-| id | UUID | ✓ | | ✓ | Identificador único da configuração de publicação. |
-| max_caption_length | SMALLINT | | | ✓ | Quantidade máxima de caracteres permitidos na legenda da publicação. |
-| max_comment_length | SMALLINT | | | ✓ | Quantidade máxima de caracteres permitidos em comentários. |
-| created_at | TIMESTAMP | | | ✓ | Data de criação da configuração. |
-| updated_at | TIMESTAMP | | |     | Data da última atualização. |
+| Atributo           | Tipo (sugestão) | PK | FK | Obrigatório | Observação                                                            |
+| ------------------ | ---------------- | :-: | :-: | :----------: | ----------------------------------------------------------------------- |
+| id                 | UUID             | ✓ |    |      ✓      | Identificador único da configuração de publicação.                 |
+| max_caption_length | SMALLINT         |    |    |      ✓      | Quantidade máxima de caracteres permitidos na legenda da publicação. |
+| max_comment_length | SMALLINT         |    |    |      ✓      | Quantidade máxima de caracteres permitidos em comentários.            |
+| created_at         | TIMESTAMP        |    |    |      ✓      | Data de criação da configuração.                                    |
+| updated_at         | TIMESTAMP        |    |    |              | Data da última atualização.                                          |

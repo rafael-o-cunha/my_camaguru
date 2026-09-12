@@ -127,6 +127,4 @@
 
 ## Experiência do Usuário
 
-- RBN020 Comentários poderão ser atualizados sem recarregar a página.
-- RBN021 Reações poderão ser atualizadas sem recarregar a página.
-- RBN022 Uploads poderão ser realizados de forma assíncrona.
+- RBN020  A galeria deverá carregar publicações adicionais automaticamente ao rolar a página, sem paginação por clique.

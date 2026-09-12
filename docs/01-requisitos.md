@@ -4,10 +4,7 @@
 
 Desenvolver uma aplicação web que permita aos usuários capturar imagens pela webcam ou realizar upload de arquivos, aplicar stickers, gerar uma composição de imagem no servidor, publicar o resultado em uma galeria pública e interagir através de reações e comentários, garantindo autenticação, segurança, responsividade e extensibilidade da plataforma.
 
-
 ---
-
-
 
 ## Protótipos de Interface
 
@@ -155,7 +152,7 @@ Fluxos ilustrados:
 | RNF003  | Compatibilidade com Chrome.                                            |
 | RNF004  | Utilizar containerização com Docker.                                 |
 | RNF005  | Armazenar credenciais e variáveis sensíveis fora do código-fonte.   |
-| RNF006  | Armazenar senhas utilizando algoritmo criptográfico seguro (BCrypt).  |
+| RNF006  | Armazenar senhas utilizando algoritmo criptográfico seguro.           |
 | RNF007  | Proteger a aplicação contra SQL Injection.                           |
 | RNF008  | Proteger a aplicação contra Cross Site Scripting (XSS).              |
 | RNF009  | Proteger a aplicação contra Cross Site Request Forgery (CSRF).       |
@@ -210,11 +207,9 @@ As funcionalidades abaixo representam evoluções da aplicação e não fazem pa
 
 ## Experiência do Usuário
 
-| Código | Requisito                                               |
-| ------- | ------------------------------------------------------- |
-| RB018   | Atualizar reações sem recarregar a página (AJAX).    |
-| RB019   | Atualizar comentários sem recarregar a página (AJAX). |
-| RB020   | Realizar upload assíncrono de arquivos.                |
+| Código | Requisito                   |
+| ------- | --------------------------- |
+| RB018   | infinite scroll na galeria. |
 
 ---
 

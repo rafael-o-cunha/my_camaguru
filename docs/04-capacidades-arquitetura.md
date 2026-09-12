@@ -1,3 +1,5 @@
+Infinite scroll na galeriaPBKDF2PBKDF2
+
 # Capacidades Técnicas
 
 Este documento apresenta as principais capacidades técnicas desenvolvidas durante a implementação do Camagru.
@@ -42,7 +44,7 @@ Camagru
 │   └── Storage de arquivos
 │
 ├── Segurança
-│   ├── BCrypt
+│   ├── Hash de senha seguro como BCrypt ou PBKDF2.
 │   ├── PreparedStatement
 │   ├── CSRF
 │   ├── XSS
@@ -52,6 +54,9 @@ Camagru
 ├── HTTP
 │
 ├── Interface Web
+│   ├── Upload assíncrono
+│   ├── Atualização assíncrona de comentários
+│   └── Atualização assíncrona de reações
 │
 ├── Processamento de Imagem
 │
@@ -88,10 +93,7 @@ Camagru
 │   └── Múltiplos papéis
 │
 └── Experiência do Usuário
-    ├── AJAX
-    ├── Upload assíncrono
-    ├── Atualização assíncrona de comentários
-    └── Atualização assíncrona de reações
+    └── Infinite scroll na galeria
 ```
 
 ---
@@ -109,4 +111,4 @@ Camagru
 | Administração (Bônus) | Configurações da aplicação, Papéis e Catálogos                     |
 | Moderação (Bônus)     | Moderação de Usuários e Publicações                                 |
 | Rede Social (Bônus)     | Follow, Respostas e Papéis                                              |
-| UX (Bônus)              | AJAX e Atualizações Assíncronas                                       |
+| UX (Bônus)              | Infinite scroll na galeria                                               |

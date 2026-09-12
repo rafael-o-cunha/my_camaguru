@@ -39,23 +39,23 @@ Para reduzir ambiguidade na avaliação de cada recurso utilizado, os itens da t
 
 ## Tabela Comparativa — Java (JDK 21 / Jakarta EE) × PHP Standard Library
 
-| #  | Necessidade Funcional       | Solução em Java                                              | Nativo ou Biblioteca?                 | Equivalente Nativo no PHP                    | Status                  |
-| -- | --------------------------- | -------------------------------------------------------------- | ------------------------------------- | -------------------------------------------- | ----------------------- |
-| 1  | Requisição/Resposta HTTP  | `HttpServletRequest` / `HttpServletResponse`               | Jakarta EE (base da plataforma)       | `$_GET`, `$_POST`, `header()`          | Mantido                 |
-| 2  | Sessão                     | `HttpSession`                                                | Jakarta EE                            | `$_SESSION`                                | Mantido                 |
-| 3  | Cookies                     | `Cookie`                                                     | Jakarta EE                            | `setcookie()`                              | Mantido                 |
-| 4  | Upload de arquivos          | `Part`                                                       | Jakarta EE                            | `$_FILES`                                  | Mantido                 |
-| 5  | Consultas parametrizadas    | `PreparedStatement`                                          | JDBC (JDK)                            | Prepared Statement (PDO)                     | Mantido                 |
-| 6  | Conexão com banco de dados | `DriverManager.getConnection()`                              | 100% nativo (JDK)                     | `new PDO(...)`                             | Alterado (era HikariCP) |
-| 7  | Hash de senha               | `PBKDF2WithHmacSHA256` via `javax.crypto.SecretKeyFactory` | 100% nativo (JDK)                     | `hash_pbkdf2()`                            | Alterado (era BCrypt)   |
-| 8  | Templates dinâmicos        | JSP + JSTL                                                     | Jakarta EE                            | Sintaxe alternativa PHP (`<?php if(): ?>`) | Mantido                 |
-| 9  | Processamento de imagem     | `Graphics2D`                                                 | Nativo (`java.awt`)                 | GD Library                                   | Mantido                 |
-| 10 | Escrita de imagem           | `ImageIO`                                                    | Nativo (`javax.imageio`)            | `imagepng()`, `imagejpeg()`              | Mantido                 |
-| 11 | Envio de e-mail             | Jakarta Mail                                                   | Jakarta EE                            | `mail()`                                   | Mantido                 |
-| 12 | Identificador único        | `UUID.randomUUID()`                                          | 100% nativo (`java.util`)           | `random_bytes()`                           | Mantido                 |
-| 13 | Variáveis de ambiente      | `System.getenv()`                                            | Nativo (JDK)                          | `getenv()`                                 | Mantido                 |
-| 14 | Build/empacotamento         | Maven                                                          | Ferramenta de build (fora do runtime) | Composer / OPcache                           | Fora do escopo da regra |
-| 15 | Servidor/Container HTTP     | Tomcat 10.1.x (embutido)                                       | Webserver                             | Apache/Nginx/`php -S`                      | Fora do escopo da regra |
+| #  | Necessidade Funcional              | Solução em Java                                              | Nativo ou Biblioteca?                 | Equivalente Nativo no PHP            | Status                    |
+| -- | ---------------------------------- | -------------------------------------------------------------- | ------------------------------------- | ------------------------------------ | ------------------------- |
+| 1  | Requisição/Resposta HTTP         | `HttpServletRequest` / `HttpServletResponse`               | Jakarta EE (base da plataforma)       | `$_GET`, `$_POST`, `header()`  | Mantido                   |
+| 2  | Sessão                            | `HttpSession`                                                | Jakarta EE                            | `$_SESSION`                        | Mantido                   |
+| 3  | Cookies                            | `Cookie`                                                     | Jakarta EE                            | `setcookie()`                      | Mantido                   |
+| 4  | Upload de arquivos                 | `Part`                                                       | Jakarta EE                            | `$_FILES`                          | Mantido                   |
+| 5  | Consultas parametrizadas           | `PreparedStatement`                                          | JDBC (JDK)                            | Prepared Statement (PDO)             | Mantido                   |
+| 6  | Conexão com banco de dados        | `DriverManager.getConnection()`                              | 100% nativo (JDK)                     | `new PDO(...)`                     | Alterado (era HikariCP)   |
+| 7  | Hash de senha                      | `PBKDF2WithHmacSHA256` via `javax.crypto.SecretKeyFactory` | 100% nativo (JDK)                     | `hash_pbkdf2()`                    | Alterado (era BCrypt)     |
+| 8  | Serialização de dados (API JSON) | `jakarta.json` (JSON-P)                                      | Jakarta EE                            | `json_encode()`, `json_decode()` | Alterado (era JSP + JSTL) |
+| 9  | Processamento de imagem            | `Graphics2D`                                                 | Nativo (`java.awt`)                 | GD Library                           | Mantido                   |
+| 10 | Escrita de imagem                  | `ImageIO`                                                    | Nativo (`javax.imageio`)            | `imagepng()`, `imagejpeg()`      | Mantido                   |
+| 11 | Envio de e-mail                    | Jakarta Mail                                                   | Jakarta EE                            | `mail()`                           | Mantido                   |
+| 12 | Identificador único               | `UUID.randomUUID()`                                          | 100% nativo (`java.util`)           | `random_bytes()`                   | Mantido                   |
+| 13 | Variáveis de ambiente             | `System.getenv()`                                            | Nativo (JDK)                          | `getenv()`                         | Mantido                   |
+| 14 | Build/empacotamento                | Maven                                                          | Ferramenta de build (fora do runtime) | Composer / OPcache                   | Fora do escopo da regra   |
+| 15 | Servidor/Container HTTP            | Tomcat 10.1.x (embutido)                                       | Webserver                             | Apache/Nginx/`php -S`              | Fora do escopo da regra   |
 
 ---
 
@@ -85,7 +85,12 @@ Para reduzir ambiguidade na avaliação de cada recurso utilizado, os itens da t
 - PHP possui `hash_pbkdf2()` como função nativa — usar `SecretKeyFactory` com PBKDF2 (nativo do JDK) reproduz uma função também nativa no PHP padrão, fechando a equivalência sem qualquer lib externa.
 - Continua atendendo RNF006 (algoritmo criptográfico seguro), com salt aleatório e iterações suficientes.
 
-### 8. JSP + JSTL
+### 8. **Serialização JSON**
+
+* Com o front desacoplado do back (HTML/CSS/JS estático consumindo via fetch), a aplicação Java deixou de renderizar HTML no servidor — o papel antes ocupado por JSP + JSTL não existe mais.
+  Toda comunicação entre front e back passa a ser via API JSON: o Servlet monta a resposta e o jakarta.json (especificação Jakarta EE, também chamada de JSON-P) converte objetos Java em JSON e vice-versa.
+  O PHP resolve essa mesma necessidade nativamente com json_encode() (serializar) e json_decode() (desserializar), sem precisar de nenhuma biblioteca — a equivalência aqui é direta e completa.
+  Essa mudança simplifica a equivalência arquitetural: como nenhuma das duas linguagens precisa de template engine para este projeto, a comparação passa a ser puramente sobre serialização de dados, eliminando a discussão sobre JSTL ser ou não um "framework de terceiros
 
 - JSTL não é um template engine de terceiros (como Twig/Blade seriam) — é especificação padrão do Jakarta EE para expressar lógica de controle dentro do HTML.
 - A função que cumpre (embutir condicionais/loops no template) já existe nativamente no PHP via sintaxe alternativa, sem necessidade de lib.
@@ -129,6 +134,22 @@ Para reduzir ambiguidade na avaliação de cada recurso utilizado, os itens da t
 - **Especificação:** Jakarta EE 10 — sucessora oficial do "Java EE". O namespace `javax.*` foi renomeado para `jakarta.*` a partir da Jakarta EE 9, após a doação do projeto pela Oracle à Eclipse Foundation em 2017.
 - **Servlet API:** `jakarta.servlet-api` 6.0.0 (Servlet 6.0)
 - **Servidor:** Tomcat 10.1.x, embutido programaticamente via `tomcat-embed-core` + `tomcat-embed-jasper` (para JSP), inicializado por uma classe `Main.java` própria.
+
+---
+
+## CORS e CSRF em Arquitetura Desacoplada
+
+Com o front servido separadamente do back (arquivos estáticos HTML/CSS/JS consumindo a API via `fetch`), duas preocupações adicionais de segurança precisam ser tratadas — nenhuma delas exige dependência externa em Java.
+
+**CORS (Cross-Origin Resource Sharing)**
+
+Implementado via `jakarta.servlet.Filter`, adicionando manualmente os headers `Access-Control-Allow-Origin`, `Access-Control-Allow-Methods` e `Access-Control-Allow-Headers` na resposta, e respondendo requisições `OPTIONS` (preflight) sem seguir a cadeia de filtros. Equivalente no PHP: chamada manual a `header('Access-Control-Allow-Origin: ...')` no início do script — o PHP também não trata CORS automaticamente, é sempre configuração explícita do desenvolvedor em ambas as linguagens.
+
+**CSRF (Cross-Site Request Forgery)**
+
+Como o modelo de consumo é API JSON via `fetch` (não formulário HTML tradicional), o token CSRF é transmitido por header customizado (`X-CSRF-Token`) em vez de campo hidden de formulário. O token é gerado com `UUID.randomUUID()` (item 12 desta tabela) e armazenado em `HttpSession`, sendo validado em um `Filter` aplicado às rotas de escrita (POST/PUT/DELETE). Equivalente no PHP: `$_SESSION['csrf_token']` gerado com `random_bytes()`, comparado contra o mesmo header enviado pelo `fetch` do front.
+
+**Classificação:** ambos os mecanismos se enquadram na **Categoria 1** do critério de classificação (infraestrutura mínima da plataforma escolhida) — `Filter`, `HttpSession` e `UUID` já constam na tabela principal como recursos da própria base Jakarta EE/JDK, sem introduzir nenhuma dependência nova ao projeto.
 
 ---
 
@@ -182,6 +203,7 @@ A implementação em Java respeita os requisitos técnicos definidos pela especi
 
 - Especificação oficial Jakarta Servlet 6.0 — https://jakarta.ee/specifications/servlet/6.0/
 - Javadoc HttpServletRequest (Tomcat 10.1) — https://tomcat.apache.org/tomcat-10.1-doc/servletapi/jakarta/servlet/http/HttpServletRequest.html
+- Javadoc Part (Servlet 6.0, Tomcat 10.1) — https://tomcat.apache.org/tomcat-10.1-doc/servletapi/jakarta/servlet/http/Part.html
 - PHP Manual — Predefined Variables ($_GET, $_POST, $_SESSION, $_COOKIE, $_FILES) — https://www.php.net/manual/en/reserved.variables.php
 - PHP Manual — $_SESSION — https://www.php.net/manual/en/reserved.variables.session.php
 - PHP Manual — setcookie() — https://www.php.net/manual/en/function.setcookie.php
@@ -199,11 +221,12 @@ A implementação em Java respeita os requisitos técnicos definidos pela especi
 - Javadoc SecretKeyFactory (Java SE 21) — https://docs.oracle.com/en/java/javase/21/docs/api/java.base/javax/crypto/SecretKeyFactory.html
 - PHP Manual — hash_pbkdf2() — https://www.php.net/manual/en/function.hash-pbkdf2.php
 
-**8. JSP + JSTL**
+**8. Serialização de dados (JSON)**
 
-- Especificação Jakarta Pages (JSP) — https://jakarta.ee/specifications/pages/
-- Especificação Jakarta Standard Tag Library 3.0 — https://jakarta.ee/specifications/tags/3.0/
-- PHP Manual — Estrutura de controle: sintaxe alternativa — https://www.php.net/manual/en/control-structures.alternative-syntax.php
+- Especificação oficial Jakarta JSON Processing (JSON-P) — https://jakarta.ee/specifications/jsonp/
+- Jakarta JSON Processing — visão geral e páginas (Eclipse Foundation) — https://jakartaee.github.io/jsonp-api/
+- PHP Manual — json_encode() — https://www.php.net/manual/en/function.json-encode.php
+- PHP Manual — json_decode() — https://www.php.net/manual/en/function.json-decode.php
 
 **9-10. Graphics2D / ImageIO**
 
