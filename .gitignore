@@ -12,13 +12,16 @@ buildNumber.properties
 .mvn/timing.properties
 
 ############################
-# Tomcat (gerado pelo plugin)
+# Maven local repo (cache de dependências, não é código)
 ############################
-**/tomcat/
-**/apache-tomcat-maven-plugin/
+app/.m2/
+
+############################
+# Tomcat (runtime dentro do container)
+############################
+**/apache-tomcat-*/
 **/work/
 **/logs/
-**/webapps/
 **/m2e-wtp/
 
 ############################
@@ -56,9 +59,9 @@ Thumbs.db
 ############################
 # Docker / Infra
 ############################
-# infra/postgres/data/
-# infra/postgres/*.pid
 infra/.env
+infra/db/data/
+infra/media/uploads/
 
 ############################
 # Outros
@@ -66,6 +69,7 @@ infra/.env
 *.tmp
 *.bak
 *.swp
+.bash_history
 
 notas/notas-arq.md
 notas/notas-task.md
